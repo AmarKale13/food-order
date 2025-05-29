@@ -3,17 +3,16 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 import { AuthProvider, useAuth } from './contexts/AuthContext';
-
-import LoginPage from './pages/Login';
-import MenuPage from './pages/Menu';
-import CartPage from './pages/Cart';
-import CheckoutPage from './pages/Checkout';
+import { CartProvider } from './contexts/CartContext';
+import LoginPage    from './pages/Login';
+import MenuPage     from './pages/Menu';
+import CartPage     from './pages/Cart';
+import Navbar       from './components/navbar';
 
 function ProtectedRoutes({ children }) {
   const { currentUser, loading } = useAuth();
 
   if (loading) return <div style={{ padding: 20 }}>Loading…</div>;
-
   return currentUser ? children : <Navigate to="/login" />;
 }
 
@@ -21,10 +20,14 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+        <CartProvider>
+        <Navbar />
+
         <Routes>
+          {/* Public route */}
           <Route path="/login" element={<LoginPage />} />
 
-          {/* Wrap protected pages with ProtectedRoutes */}
+          {/* Protected routes */}
           <Route
             path="/menu"
             element={
@@ -41,17 +44,12 @@ function App() {
               </ProtectedRoutes>
             }
           />
-          <Route
-            path="/checkout"
-            element={
-              <ProtectedRoutes>
-                <CheckoutPage />
-              </ProtectedRoutes>
-            }
-          />
-          {/* Redirect unknown routes */}
+
+          {/* Redirect unknowns */}
           <Route path="*" element={<Navigate to="/menu" />} />
         </Routes>
+        </CartProvider>
+
       </AuthProvider>
     </BrowserRouter>
   );

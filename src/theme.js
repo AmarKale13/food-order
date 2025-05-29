@@ -4,10 +4,10 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#ff6b00',  // your accent orange
+      main: '#ff6b00',  
     },
     secondary: {
-      main: '#005f73',  // a complementary deep teal
+      main: '#005f73',  
     },
     background: {
       default: '#f7f7f7',
