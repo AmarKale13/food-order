@@ -1,4 +1,4 @@
-// src/App.js
+
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
@@ -24,10 +24,8 @@ function App() {
         <Navbar />
 
         <Routes>
-          {/* Public route */}
           <Route path="/login" element={<LoginPage />} />
 
-          {/* Protected routes */}
           <Route
             path="/menu"
             element={

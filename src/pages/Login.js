@@ -10,7 +10,6 @@ import { useAuth } from '../contexts/AuthContext';
 export default function LoginPage() {
   const { signIn, signUp, error } = useAuth();
   const navigate = useNavigate();
-
   const [email,       setEmail]       = useState('');
   const [password,    setPassword]    = useState('');
   const [isSigningUp, setIsSigningUp] = useState(false);

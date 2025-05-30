@@ -42,14 +42,12 @@ export function CartProvider({ children }) {
     return items.reduce((sum, i) => sum + i.quantity, 0);
   }
 
-  // Total price (sum of price * qty)
   function getTotalPrice() {
     return items
       .reduce((sum, i) => sum + i.price * i.quantity, 0)
       .toFixed(2);
   }
 
-  // Expose state & actions
   const value = {
     items,
     addItem,
